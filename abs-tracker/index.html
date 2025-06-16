@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abs & Body Fat Tracker</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Abs & Body Fat Tracker</h1>
+  <div class="container">
+    <input type="file" id="photo" accept="image/*">
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="waist" placeholder="Waist (cm)">
+    <input type="number" id="height" placeholder="Height (cm)">
+    <button onclick="calculate()">Track & Calculate</button>
+    <div id="output"></div>
+    <div id="imgPreview"></div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
