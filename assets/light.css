@@ -1,18 +1,54 @@
 body {
   font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  margin: 0;
-  padding: 1rem;
+  margin: 20px;
+  background: #f5f5f5;
+  color: #222;
 }
-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+
+input, textarea, button {
+  font-size: 1rem;
+  padding: 8px;
+  margin: 5px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
+
 button {
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #1976d2;
+}
+
+#calendar-heatmap div {
+  cursor: default;
+}
+
+#charts-container {
+  margin: 20px 0;
+}
+
+#ai-coach-container, #charts-container, #calendar-heatmap {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+#dashboard, #login-section, #signup-section {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
