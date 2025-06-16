@@ -1,5 +1,5 @@
-const API_URL = 'https://your-supabase-url.supabase.co'; // replace with your Supabase URL
-const API_KEY = 'your-anon-key'; // replace with your Supabase anon key
+const API_URL = 'https://qexeatzdiiyghljqmdux.supabase.co'; // replace with your Supabase URL
+const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFleGVhdHpkaWl5Z2hsanFtZHV4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAwNjI5OTQsImV4cCI6MjA2NTYzODk5NH0.PVp28He5rzP8cRVmUjv_uVTpbVjcxUoh17sYJtp0XbU'; // replace with your Supabase anon key
 
 export async function loginUser(email, password) {
   const res = await fetch(`${API_URL}/auth/v1/token?grant_type=password`, {
