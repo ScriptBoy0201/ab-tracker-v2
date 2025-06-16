@@ -1,44 +1,65 @@
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+const API_URL = 'https://your-supabase-url.supabase.co'; // replace with your Supabase URL
+const API_KEY = 'your-anon-key'; // replace with your Supabase anon key
 
-const supabaseUrl = 'https://YOUR_PROJECT.supabase.co';
-const supabaseKey = 'YOUR_ANON_KEY';
-const supabase = createClient(supabaseUrl, supabaseKey);
+export async function loginUser(email, password) {
+  const res = await fetch(`${API_URL}/auth/v1/token?grant_type=password`, {
+    method: 'POST',
+    headers: {
+      apikey: API_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error_description || 'Login failed');
+  return data.access_token;
+}
 
-// Calculate body fat % from weight and waist (US Navy method simplified)
-function calculateBodyFat(weight, waist) {
-  // Simple formula (replace with better one if you want)
-  // Just a placeholder: BF% = 495/(1.0324 - 0.19077*log10(waist - weight*0.22) + 0.15456*log10(height)) - 450
-  // Without height, we'll use a simplified proxy (not accurate, but demo ready)
-  return 495 / (1.0324 - 0.19077 * Math.log10(waist - weight * 0.22) + 0.15456 * Math.log10(weight)) - 450;
+export async function signupUser(email, password) {
+  const res = await fetch(`${API_URL}/auth/v1/signup`, {
+    method: 'POST',
+    headers: {
+      apikey: API_KEY,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email, password }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error_description || 'Signup failed');
+  return data;
 }
 
 export async function fetchProgress() {
-  const user = supabase.auth.user();
-  if (!user) return [];
-  const { data, error } = await supabase
-    .from('progress')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('date', { ascending: false });
-  if (error) {
-    console.error('Error fetching progress:', error);
-    return [];
-  }
-  return data || [];
+  const token = localStorage.getItem('user_token');
+  const res = await fetch(`${API_URL}/rest/v1/progress?order=date.asc`, {
+    headers: {
+      apikey: API_KEY,
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) throw new Error('Failed to fetch progress');
+  return res.json();
 }
 
 export async function saveProgress(weight, waist) {
-  const user = supabase.auth.user();
-  if (!user) throw new Error('User not logged in');
-  const body_fat = calculateBodyFat(weight, waist);
-  const { error } = await supabase.from('progress').insert({
-    user_id: user.id,
-    weight,
-    waist,
-    body_fat,
-    date: new Date().toISOString(),
+  const token = localStorage.getItem('user_token');
+  // calculate body fat percentage (simplified)
+  // For demo, just random in 10–20%
+  const body_fat = 10 + Math.random() * 10;
+  const res = await fetch(`${API_URL}/rest/v1/progress`, {
+    method: 'POST',
+    headers: {
+      apikey: API_KEY,
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      date: new Date().toISOString(),
+      weight,
+      waist,
+      body_fat,
+    }),
   });
-  if (error) {
-    console.error('Error saving progress:', error);
-  }
+  if (!res.ok) throw new Error('Failed to save progress');
+  return res.json();
 }
