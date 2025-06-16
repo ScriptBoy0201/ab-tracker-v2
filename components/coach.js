@@ -1,6 +1,6 @@
 import { showToast } from '../utils/toast.js';
 
-const OPENAI_API_KEY = 'your-openai-api-key'; // replace with your key
+const OPENAI_API_KEY = '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'; // replace with your key
 
 export function setupCoach(container) {
   container.innerHTML = `
