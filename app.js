@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   if(savedTheme === 'dark') themeStyle.href = 'assets/dark.css';
 
-  // Start with auth screen
   setupAuth(appRoot, () => {
     setupDashboard(appRoot);
   });
