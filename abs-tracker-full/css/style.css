@@ -1,0 +1,56 @@
+body {
+  --bg: #111;
+  --text: #fff;
+  --accent: #00d084;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+body.light {
+  --bg: #fff;
+  --text: #000;
+}
+header, footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+}
+main {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+input, button, textarea {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.3rem 0;
+  border-radius: 0.5rem;
+  border: none;
+}
+button {
+  background: var(--accent);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+img {
+  max-width: 100%;
+  margin-top: 1rem;
+  border-radius: 1rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #444;
+}
+textarea {
+  height: 100px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abs & Body Fat Tracker Pro</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>💪 Abs & Body Fat Tracker Pro</h1>
+    <button id="toggleTheme">🌓 Toggle Theme</button>
+  </header>
+
+  <main>
+    <section class="input-section">
+      <h2>Track Your Progress</h2>
+      <input type="file" id="photo" accept="image/*">
+      <input type="number" id="weight" placeholder="Weight (kg)">
+      <input type="number" id="waist" placeholder="Waist (cm)">
+      <input type="number" id="height" placeholder="Height (cm)">
+      <button onclick="calculate()">Calculate Body Fat</button>
+      <div id="output"></div>
+      <div id="imgPreview"></div>
+    </section>
+
+    <section class="history-section">
+      <h2>📅 Progress History</h2>
+      <table id="historyTable">
+        <thead><tr><th>Date</th><th>Weight</th><th>Waist</th><th>Body Fat %</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="chart-section">
+      <h2>📈 Body Fat Over Time</h2>
+      <canvas id="progressChart" width="400" height="200"></canvas>
+    </section>
+
+    <section class="ai-section">
+      <h2>🤖 Ask ShredBot</h2>
+      <textarea id="userInput" placeholder="Ask about ab workouts, diets, etc..."></textarea>
+      <button onclick="askAI()">Ask AI</button>
+      <div id="aiResponse"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AbsTracker Pro | Built by Will</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="ai/chatbot.js"></script>
+</body>
+</html>
